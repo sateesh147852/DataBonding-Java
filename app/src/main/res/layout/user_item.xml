@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.databindingjava.model.User" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivImage"
+        loadImage="@{user.imageUrl}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:text="@{user.name ?? String.valueOf(user.age)}"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivImage"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:text="@{String.valueOf(user.age)}"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/ivImage"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="@{user.active ? `Active` : `Not Active`}"
+        android:enabled="@{user.active}"
+        android:onClick="@{user::handleClick}"
+        app:layout_constraintTop_toBottomOf="@id/tvAge"
+        app:layout_constraintStart_toEndOf="@id/ivImage"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
